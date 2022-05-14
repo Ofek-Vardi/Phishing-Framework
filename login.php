@@ -7,6 +7,8 @@
 	foreach($_GET as $variable => $value) {
 		fwrite($handle, "$variable=$value\n");
 	}
+	// Add separator between different sessions
+	fwrite($handle, "----------\n");
 	// Drop handle
 	fclose($handle)
 ?>
