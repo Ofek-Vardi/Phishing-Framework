@@ -41,6 +41,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Global variables
-    IP = ip = requests.get('https://api.ipify.org').text  # Get the host public IPv4 address
+    try:
+        IP = ip = requests.get('https://api.ipify.org').text  # Get the host public IPv4 address
+    except requests.exceptions.RequestException as err:
+        print(f"Error retrieving host public IP address - {err}")
     PAGE = args.login_page  # Legitimate login page link
     main()
