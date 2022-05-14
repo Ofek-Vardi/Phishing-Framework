@@ -8,6 +8,7 @@ It includes 2 phishing page generator scripts, in both **Bash** and **Python**.
 ## Notes
 
 Generated phishing page file name - **login.html**\
+A PHP script (**login.php**) will be generated from the existing template, and will redirect user to the legitimate website provided to the python script.\
 When using the Python script, please run it using python3.6+.\
 When using the Bash script, please note it lacks any input validation.
 
@@ -18,6 +19,7 @@ When using the Bash script, please note it lacks any input validation.
     - requests
     - pathlib
     - argparse
+    - re
 
 ### Command Line Arguments
 

